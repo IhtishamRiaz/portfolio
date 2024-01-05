@@ -8,9 +8,18 @@ import { BsArrowRight, BsLinkedin } from "react-icons/bs";
 import { HiDownload } from "react-icons/hi";
 import { FaGithubSquare } from "react-icons/fa";
 import { useSectionInView } from "@/hooks/useSectionInView";
+import { useGlobalStore } from "@/store/globalStore";
+import { SectionNameType } from "@/lib/types";
 
 const Hero = () => {
    const { ref } = useSectionInView("Home", 0.5);
+   const setLastClickTime = useGlobalStore((state) => state.setLastClickTime);
+   const setActiveSection = useGlobalStore((state) => state.setActiveSection);
+
+   const handleLinkClick = (name: SectionNameType) => {
+      setActiveSection(name);
+      setLastClickTime(Date.now());
+   };
 
    return (
       <section
@@ -66,7 +75,7 @@ const Hero = () => {
          </m.h1>
 
          <m.div
-            className="flex flex-col sm:flex-row justify-center gap-2 px-4 text-lg font-medium"
+            className="flex flex-col sm:flex-row justify-center items-center  gap-2 px-4 text-lg font-medium"
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -74,6 +83,7 @@ const Hero = () => {
             <Link
                href="#contact"
                className="group bg-gray-900 text-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition"
+               onClick={() => handleLinkClick("Contact")}
             >
                Contact me here{" "}
                <BsArrowRight className="opacity-70 group-hover:translate-x-1 transition" />
@@ -82,27 +92,29 @@ const Hero = () => {
             <a
                href="/CV.pdf"
                download
-               className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition border border-black/10"
+               className="group bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 active:scale-105 transition border border-black/10 dark:bg-white/10"
             >
                Download CV{" "}
                <HiDownload className="opacity-60 group-hover:translate-y-1 transition" />
             </a>
 
-            <a
-               href="https://www.linkedin.com/in/ihtisham00/"
-               target="_blank"
-               className="bg-white text-gray-700 p-4 px-[18px] flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:text-gray-950 active:scale-105 transition border border-black/10"
-            >
-               <BsLinkedin />
-            </a>
+            <div className="flex justify-center items-center gap-2">
+               <a
+                  href="https://www.linkedin.com/in/ihtisham00/"
+                  target="_blank"
+                  className="bg-white text-gray-700 p-4 px-[18px] flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:text-gray-950 active:scale-105 transition border border-black/10 dark:bg-white/10 dark:text-white/60 dark:hover:text-white/90"
+               >
+                  <BsLinkedin />
+               </a>
 
-            <a
-               href="https://github.com/IhtishamRiaz"
-               target="_blank"
-               className="bg-white text-gray-700 p-4 px-[18px] flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:text-gray-950 active:scale-105 transition border border-black/10"
-            >
-               <FaGithubSquare />
-            </a>
+               <a
+                  href="https://github.com/IhtishamRiaz"
+                  target="_blank"
+                  className="bg-white text-gray-700 p-4 px-[18px] flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110 hover:text-gray-950 active:scale-105 transition border border-black/10 dark:bg-white/10 dark:text-white/60 dark:hover:text-white/90"
+               >
+                  <FaGithubSquare />
+               </a>
+            </div>
          </m.div>
       </section>
    );

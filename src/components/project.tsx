@@ -24,11 +24,11 @@ const Project = ({ title, description, tags, imageUrl }: ProjectProps) => {
          style={{ opacity: scaleProgress, scale: opacityProgress }}
          className="group mb-3 sm:mb-8 last:mb-0"
       >
-         <section className="relative bg-gray-100 max-w-[42rem] border border-black/5 overflow-hidden group-even:pl-8 sm:pr-8 hover:bg-gray-200 transition rounded-md">
-            <div className="pt-4 pb-7 px-5 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[50%] sm:h-[20rem] flex flex-col h-full group-even:ml-[18rem]">
+         <section className="relative bg-gray-100 max-w-[42rem] border border-black/5 overflow-hidden sm:group-even:pl-8 sm:pr-8 hover:bg-gray-200 transition rounded-md dark:bg-white/10 dark:hover:bg-white/20 dark:text-white">
+            <div className="pt-4 pb-7 px-5 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[50%] sm:h-[20rem] flex flex-col h-full sm:group-even:ml-[18rem]">
                <h3 className="text-2xl font-semibold">{title}</h3>
 
-               <p className="mt-2 leading-relaxed text-gray-700">
+               <p className="mt-2 leading-relaxed text-gray-700 dark:text-white/70">
                   {description}
                </p>
 
@@ -48,7 +48,7 @@ const Project = ({ title, description, tags, imageUrl }: ProjectProps) => {
                src={imageUrl}
                alt={title}
                quality={95}
-               className="absolute top-8 -right-40 w-[28.25rem] rounded-t-lg shadow-2xl transition
+               className="absolute top-8 -right-40 w-[28.25rem] rounded-t-lg shadow-2xl transition hidden sm:block
                group-hover:-translate-x-3 
                group-hover:translate-y-3 
                group-hover:-rotate-2 
