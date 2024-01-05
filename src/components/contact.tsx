@@ -1,14 +1,25 @@
 "use client";
 
 import React from "react";
-import Title from "./title";
+import Title from "@/src/components/title";
 import { useSectionInView } from "@/hooks/useSectionInView";
-import { FaPaperPlane } from "react-icons/fa";
 import { motion as m } from "framer-motion";
 import { sendEmail } from "@/actions/sendEmail";
+import SubmitBtn from "@/src/components/submit-btn";
+import toast from "react-hot-toast";
 
 const Contact = () => {
    const { ref } = useSectionInView("Contact");
+
+   const formAction = async (formData: FormData) => {
+      const { data, error } = await sendEmail(formData);
+      if (error) {
+         toast.error(error);
+         return;
+      }
+
+      toast.success("Email sent successfully");
+   };
 
    return (
       <m.section
@@ -34,7 +45,7 @@ const Contact = () => {
          </p>
 
          <form
-            action={async (formData) => await sendEmail(formData)}
+            action={formAction}
             className="mt-10 flex flex-col dark:text-black font-medium"
          >
             <input
@@ -53,14 +64,7 @@ const Contact = () => {
                maxLength={5000}
                className="h-52 my-3 p-4 rounded-lg border border-black/10 resize-y outline-gray-600 dark:bg-white dark:bg-opacity-70 dark:focus:bg-opacity-100 dark:outline-none dark:placeholder:text-black/60"
             />
-
-            <button
-               type="submit"
-               className="group h-[3rem] w-[8rem] bg-gray-900 text-white rounded-full outline-none transition-all flex items-center justify-center gap-2 focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 dark:bg-white dark:bg-opacity-10"
-            >
-               Submit{" "}
-               <FaPaperPlane className="text-xs opacity-70 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 group-focus:translate-x-1 group-focus:-translate-y-1" />
-            </button>
+            <SubmitBtn />
          </form>
       </m.section>
    );
