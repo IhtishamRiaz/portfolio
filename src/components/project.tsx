@@ -4,10 +4,17 @@ import React, { useRef } from "react";
 import Image from "next/image";
 import { useScroll, motion as m, useTransform } from "framer-motion";
 import { projectsData } from "@/lib/data";
+import { FiExternalLink } from "react-icons/fi";
 
 type ProjectProps = (typeof projectsData)[number];
 
-const Project = ({ title, description, tags, imageUrl }: ProjectProps) => {
+const Project = ({
+   title,
+   description,
+   tags,
+   imageUrl,
+   link,
+}: ProjectProps) => {
    const ref = useRef<HTMLDivElement>(null);
 
    const { scrollYProgress } = useScroll({
@@ -26,7 +33,16 @@ const Project = ({ title, description, tags, imageUrl }: ProjectProps) => {
       >
          <section className="relative bg-gray-100 max-w-[42rem] border border-black/5 overflow-hidden sm:group-even:pl-8 sm:pr-8 hover:bg-gray-200 transition rounded-md dark:bg-white/10 dark:hover:bg-white/20 dark:text-white">
             <div className="pt-4 pb-7 px-5 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[50%] sm:h-[20rem] flex flex-col h-full sm:group-even:ml-[18rem]">
-               <h3 className="text-2xl font-semibold">{title}</h3>
+               <div className="flex gap-2">
+                  <h3 className="text-2xl font-semibold">{title}</h3>
+                  <a
+                     href={link}
+                     target="_blank"
+                     className="text-slate-800 dark:text-white text-xl opacity-0 group-hover:opacity-100 transition-all"
+                  >
+                     <FiExternalLink />
+                  </a>
+               </div>
 
                <p className="mt-2 leading-relaxed text-gray-700 dark:text-white/70">
                   {description}
