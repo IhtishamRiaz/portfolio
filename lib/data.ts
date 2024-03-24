@@ -93,4 +93,5 @@ export const skillsData = [
    "Express",
    "Framer Motion",
    "Zustand",
+   "Redux Toolkit"
 ] as const;
