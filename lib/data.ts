@@ -56,7 +56,15 @@ export const experiencesData = [
       description:
          "During my intermediate studies, I secured a part-time position as a Frontend Developer at TheZoq, where I Collaborated with a laravel developer and played a pivotal role in shaping the frontend aspects of various projects.",
       icon: React.createElement(CgWorkAlt),
-      date: "2022 - present",
+      date: "2022 - 2024",
+   },
+   {
+      title: "Frontend Developer",
+      location: "Wah Cantt, PK",
+      description:
+         "Joined CryptoKoder as a React.js & Next.js Developer. Collaborating closely with backend developers and designers, I play a pivotal role in shaping the frontend aspects of diverse projects. Leveraging my expertise in React.js and Next.js, I develop interactive and responsive web applications, ensuring seamless user experiences.",
+      icon: React.createElement(CgWorkAlt),
+      date: "2024 - present",
    },
 ] as const;
 
@@ -93,5 +101,5 @@ export const skillsData = [
    "Express",
    "Framer Motion",
    "Zustand",
-   "Redux Toolkit"
+   "Redux Toolkit",
 ] as const;
